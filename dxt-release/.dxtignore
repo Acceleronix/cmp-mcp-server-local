@@ -1,0 +1,43 @@
+# Development files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+*.log
+logs/
+
+# Test files
+test-server.js
+setup.sh
+
+# Documentation (keep only essential README)
+CHANGELOG.md
+
+# Git files
+.git/
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+
+# Development dependencies (keep only production dependencies)
+server/node_modules/.bin/
+server/node_modules/@types/
+server/node_modules/typescript/
+
+# Optional: Reduce some larger dependencies that aren't essential
+server/node_modules/**/test/
+server/node_modules/**/tests/
+server/node_modules/**/docs/
+server/node_modules/**/*.md
+server/node_modules/**/.git/

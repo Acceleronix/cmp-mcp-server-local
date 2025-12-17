@@ -1,0 +1,14 @@
+{
+	"mcpServers": {
+		"cmp-mcp-server": {
+			"command": "node",
+			"args": [
+				"/absolute/path/to/cmp-mcp-server-local/dist/index.js"
+			],
+			"env": {
+				"CMP_API_KEY": "your_api_key",
+				"CMP_API_SECRET": "your_api_secret"
+			}
+		}
+	}
+}

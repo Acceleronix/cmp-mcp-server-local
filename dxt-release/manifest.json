@@ -1,0 +1,82 @@
+{
+  "dxt_version": "0.1",
+  "name": "cmp-mcp-server",
+  "version": "1.0.0",
+  "display_name": "CMP MCP Server",
+  "description": "Desktop extension for managing CMP SIM/eUICC data through a local MCP server",
+  "long_description": "A comprehensive MCP server that provides tools for querying and managing SIM cards and eUICC devices via the CMP (Connectivity Management Platform) API. Features include pagination support, compact response formats, and efficient token usage for AI assistants.",
+  "author": {
+    "name": "Acceleronix",
+    "email": "support@acceleronix.io",
+    "url": "https://acceleronix.io"
+  },
+  "license": "MIT",
+  "keywords": ["sim", "esim", "cellular", "iot", "device-management", "api"],
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.js"],
+      "env": {
+        "CMP_API_KEY": "${user_config.cmp_api_key}",
+        "CMP_API_SECRET": "${user_config.cmp_api_secret}",
+        "CMP_API_ENDPOINT": "${user_config.cmp_api_endpoint}",
+        "NODE_ENV": "production"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "query_sim_list",
+      "description": "Query SIM cards with cursor-based pagination and compact formatting"
+    },
+    {
+      "name": "query_sim_detail",
+      "description": "Get detailed information about a specific SIM card by ICCID"
+    },
+    {
+      "name": "query_sim_usage",
+      "description": "Query SIM card data usage for a specific month"
+    },
+    {
+      "name": "query_euicc_list",
+      "description": "Query eUICC devices with cursor-based pagination and compact formatting"
+    },
+    {
+      "name": "euicc_profile_stats",
+      "description": "Get statistical overview of eUICC profile distribution"
+    }
+  ],
+  "user_config": {
+    "cmp_api_key": {
+      "type": "string",
+      "title": "CMP API Key",
+      "description": "CMP API Key for authentication",
+      "required": true,
+      "sensitive": true
+    },
+    "cmp_api_secret": {
+      "type": "string",
+      "title": "CMP API Secret",
+      "description": "CMP API Secret for authentication",
+      "required": true,
+      "sensitive": true
+    },
+    "cmp_api_endpoint": {
+      "type": "string",
+      "title": "CMP API Endpoint",
+      "description": "CMP API endpoint URL",
+      "default": "https://cmp.acceleronix.io/gateway/openapi",
+      "required": false
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}
